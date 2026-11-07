@@ -2,7 +2,7 @@
   "name": "wax-nft-backed-token-unlock-visualizer",
   "version": "0.1.0",
   "private": true,
-  "description": "Linear unlock with a cliff. The schedule is an argument, not an NFT.",
+  "description": "Holder-split and cliff schedule. Not AtomicAssets native backing.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
