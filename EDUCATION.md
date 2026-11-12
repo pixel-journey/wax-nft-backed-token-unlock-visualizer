@@ -3,7 +3,9 @@
 > **Rung:** `npm test` passes. The lab splits a pool and runs a cliff schedule. It does not call `backasset`, sign, or broadcast.  
 > **The test is the rule.**
 
-AtomicAssets v2.0.0 (`atomicassets/atomicassets-contract`, released 2026-08-03) makes `backasset` fail with `Native backing has been deprecated on the AtomicAssets Contract`. `mintasset` rejects a non-empty `tokens_to_back`. Both names stay in the ABI, so an ABI diff does not show the break. Tokens already sitting in `backed_tokens` are not stranded: burning the asset still releases them to the owner. `withdraw`, `announcedepo`, and the deposit path are unchanged. That burn-release sentence is a contract release note. This repo does not execute it.
+AtomicAssets v2.0.0 (`atomicassets/atomicassets-contract`, released 2026-08-03) makes `backasset` fail with `Native backing has been deprecated on the AtomicAssets Contract`. `mintasset` rejects a non-empty `tokens_to_back`. Both names stay in the ABI, so an ABI diff does not show the break. Tokens already sitting in `backed_tokens` are not stranded: burning the asset still releases them to the owner. That burn-release sentence is a contract release note. This repo does not execute the burn.
+
+`previewAnnounce` and `previewWithdraw` do cover the balance table that survived. A supported symbol opens a zero row. Announcing it again is a no-op. A withdraw must be positive and covered by that row. The contract would then transfer with memo `Withdrawal`. This preview returns the memo and the remaining balance. It does not send the transfer. Mint refusals stay in [wax-atomic-template-and-schema-explorer](https://github.com/pixel-journey/wax-atomic-template-and-schema-explorer).
 
 ## What you should be able to do
 
